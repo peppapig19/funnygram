@@ -1,0 +1,9 @@
+.post {
+    background-color: #444;
+    border: 1px solid #555;
+    padding: 10px;
+}
+
+.post > h2 {
+    margin-top: 0;
+}

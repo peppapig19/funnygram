@@ -1,0 +1,9 @@
+{
+    "presets": [ // поддерживаемые особенности языка
+        "@babel/preset-env", // синтаксис ES2015+
+        "@babel/preset-react" // для реакта
+    ],
+    "plugins": [
+        "@babel/plugin-transform-runtime"
+    ]
+}

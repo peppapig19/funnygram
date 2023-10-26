@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PostList from './components/post/PostList';
+import PostList from './components/PostList/PostList';
 
 class App extends Component {
   constructor(props) {
@@ -9,13 +9,21 @@ class App extends Component {
       { title: 'Post 2', text: 'This is the second post.' },
       { title: 'Post 3', text: 'This is the third post.' },
     ];
+    this.styles = {
+      post: {
+        marginLeft: 'auto',
+        marginRight: 'auto',
+        width: '50%',
+        height: '200px'
+      }
+    };
   }
 
   render() {
     return (
       <div className="App">
         <h1>Анекдоты</h1>
-        <PostList posts={this.postsData} />
+        <PostList posts={this.postsData} postStyle={this.styles.post} />
       </div>
     );
   }

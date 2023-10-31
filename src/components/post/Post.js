@@ -1,16 +1,14 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './Post.css';
 
-class Post extends Component {
-  render() {
-    const { title, text, style } = this.props;
+const Post = (props) => {
+    const { title, body, style } = props;
     return (
-      <div className="post" style={style}>
-        <h2>{title}</h2>
-        <p>{text}</p>
-      </div>
-    );
-  }
+        <div className='post' style={style}>
+            <h2>{title}</h2>
+            <p>{body}</p>
+        </div>
+    )
 }
 
 export default Post;

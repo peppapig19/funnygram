@@ -1,32 +1,27 @@
-import React, { Component } from 'react';
-import PostList from './components/PostList/PostList';
+import React, { useState, useEffect } from 'react';
+import { Routes, Route, Navigate } from 'react-router-dom';
+import Tabs from './components/Tabs/Tabs';
+import Feed from './components/Feed/Feed';
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.postsData = [
-      { title: 'Post 1', text: 'This is the first post.' },
-      { title: 'Post 2', text: 'This is the second post.' },
-      { title: 'Post 3', text: 'This is the third post.' },
-    ];
-    this.styles = {
-      post: {
-        marginLeft: 'auto',
-        marginRight: 'auto',
-        width: '50%',
-        height: '200px'
-      }
-    };
-  }
+const App = () => {
+    const [categories, setCategories] = useState([]);
 
-  render() {
+    useEffect(() => {
+        fetch(`http://localhost:3000/categories`)
+            .then(response => response.json())
+            .then(categories => setCategories(categories));
+    }, []);
+
     return (
-      <div className="App">
-        <h1>Анекдоты</h1>
-        <PostList posts={this.postsData} postStyle={this.styles.post} />
-      </div>
+        <div>
+            <h1 class='header'>Анекдоты</h1>
+            <Tabs categories={categories} />
+            <Routes>
+                <Route path='/' element={<Navigate to="/feed" />} />
+                <Route path="/feed/:categorySlug?" element={<Feed categories={categories} />} />
+            </Routes>
+        </div>
     );
-  }
-}
+};
 
 export default App;

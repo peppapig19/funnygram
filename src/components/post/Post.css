@@ -1,15 +1,16 @@
 .post {
     background-color: #444;
-    border: 1px solid #555;
+    border: 2px solid #555;
+    white-space: pre-wrap;
     padding: 10px;
 }
 
-.post > h2 {
+.post h2 {
     margin-top: 0;
 }
 
 @media (max-width: 768px) {
     .post {
-        width: 100%;
+        width: 100% !important;
     }
 }

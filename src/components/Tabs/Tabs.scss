@@ -10,6 +10,7 @@
 
     @media (max-width: $layout-breakpoint-medium) {
         display: block;
+        position: static;
     }
 }
 

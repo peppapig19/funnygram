@@ -30,8 +30,8 @@ const Feed: React.FC<FeedProps> = (props) => {
             }
             posts = posts?.map(post => ({
                 ...post,
-                isFavorite: favs.findIndex(fav => fav.id === post.id) !== -1,
-            })) || [];
+                isFavorite: favs.includes(post.id),
+            } as PostType)) || [];
             setPosts(posts);
             setIsLoading(false);
         }, 1000);

@@ -45,7 +45,7 @@ const Tabs: React.FC = () => {
                     <Routes>
                         <Route path='/' element={<Navigate to='/feed' />} />
                         <Route path='/feed/:categorySlug?' element={<Feed data={data} />} />
-                        <Route path='/favorites' element={<Favorites />} />
+                        <Route path='/favorites' element={<Favorites data={data} />} />
                     </Routes>
                 </>
             )}

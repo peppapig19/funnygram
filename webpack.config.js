@@ -1,40 +1,41 @@
+/* eslint-disable */
 const path = require('path');
 
 module.exports = {
-    mode: 'development', // среда, по умолчанию production
-    entry: './src/index.js', // точка входа приложения
-
-    // единственный файл, который будет использоваться браузером, со сборкой всех модулей приложения
-    output: {
-        path: path.resolve(__dirname, 'public'), // папка целевого файла
-        filename: 'main.js' // название целевого файла
+    mode: 'development',
+    entry: './src/index.tsx', // точка входа приложения   
+    output: { // единственный файл, который будет использоваться браузером, со сборкой всех модулей приложения
+        path: path.resolve(__dirname, 'public'),
+        filename: 'bundle.js'
     },
-
-    target: 'web', // целевая платформа: node для серверной разработки, web для клиентской (браузер), по умолчанию web
+    target: 'web',
     devServer: {
         port: '9500', // порт сервера разработки
         static: ['./public'], // какие статические файлы вебпак будет обслуживать
-        open: true, // открыть браузер после запуска сервера
+        open: true,
         liveReload: true, // обнаружение изменений кода
         hot: true // обновлять модули без перезагрузки страницы
     },
     resolve: {
         // если у нескольких файлов одинаковое имя, но разные расширения, вебпак использует первое расширение в списке
         // это позволяет не указывать расширение при импорте
-        extensions: ['.js', '.jsx', '.json', '.css']
+        extensions: ['.ts', '.tsx', '.js', '.jsx', '.json', '.css']
     },
     module: {
-        // обнаружив require/import с файлами js/jsx (кроме папки node_modules),
-        // применить на эти файлы транспайлер и добавить в сборку
         rules: [
             {
-                test: /\.(js|jsx)$/, // искомые расширения
-                exclude: /node_modules/, // исключить папку node_modules
-                use: 'babel-loader' // транспайлер
+                test: /\.tsx?$/, // искомые расширения
+                exclude: /node_modules/,
+                use: 'ts-loader' // транспайлер
             },
             {
-                test: /\.css$/,
-                use: ['style-loader', 'css-loader'] // загрузка стилей, затем внедрение их в DOM
+                test: /\.jsx?$/,
+                exclude: /node_modules/,
+                use: 'babel-loader'
+            },
+            {
+                test: /\.s(a|c)ss$/,
+                use: ['style-loader', 'css-loader', 'sass-loader'] // загрузка стилей, затем внедрение их в DOM
             },
         ]
     }

@@ -1,0 +1,12 @@
+@use 'assets/styles/variables' as *;
+
+body {
+    font-family: $font-family;
+    background-color: $background-color;
+    color: $text-color;
+    margin: 0;
+}
+
+.header {
+    margin: 20px;
+}

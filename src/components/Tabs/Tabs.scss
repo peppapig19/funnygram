@@ -1,0 +1,33 @@
+@use '../../assets/styles/variables' as *;
+
+.tabs {
+    display: flex;
+    list-style: none;
+    position: sticky;
+    top: 0;
+    padding: 0;
+    background-color: $tabs-background-color;
+
+    @media (max-width: $layout-breakpoint-medium) {
+        display: block;
+    }
+}
+
+.tab {
+    text-decoration: none;
+
+    div {
+        text-align: center;
+        font-weight: bold;
+        color: $text-color;
+        padding: 10px 20px;
+        border-bottom: 5px solid $tabs-background-color;
+    }
+
+    &.active,
+    &:hover {
+        div {
+            border-bottom: 5px solid $accent-color;
+        }
+    }
+}

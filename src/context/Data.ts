@@ -1,3 +1,4 @@
+import { resolve } from 'path';
 import db from './db.json';
 
 export interface Post {
@@ -12,6 +13,8 @@ export interface Category {
     slug: string;
     name: string;
 }
+
+
 
 class Data {
     posts: Post[];
@@ -34,6 +37,11 @@ class Data {
         return this.posts.filter(post => post.categoryId === category.id);
     }
 
+    getPostsByCategorySlug = (categorySlug: string) => {
+        const category = this.getCategoryBySlug(categorySlug) ?? this.categories[0];
+        return this.posts.filter(post => post.categoryId === category.id);
+    }
+
     addPost = (newPost: Post) => {
         this.posts.push(newPost);
     }
@@ -49,6 +57,22 @@ class Data {
 
     deletePost = (postToDelete: Post) => {
         this.posts = this.posts.filter(post => post.id !== postToDelete.id);
+    }
+
+    loadingCategories = async () : Promise<Category[]> => {
+        return new Promise((resolve) => {
+            setTimeout(()=>{
+                return resolve(this.categories)
+            }, 1000)
+        })
+    }
+
+    loadingPosts = async (categorySlug: string) : Promise<Post[]> => {
+        return new Promise((resolve) => {
+            setTimeout(()=>{
+                return resolve(this.getPostsByCategorySlug(categorySlug))
+            }, 1000)
+        })
     }
 }
 

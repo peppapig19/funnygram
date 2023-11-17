@@ -1,7 +1,7 @@
 import { useRef, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
-const useScrollRestoration = () => {
+export const useScrollRestoration = () => {
     const location = useLocation();
     const isReady = useRef<boolean>();
 
@@ -22,16 +22,11 @@ const useScrollRestoration = () => {
         };
     }, [location.pathname]);
 
-    return (isLoading: boolean) => {
+    return () => {
         if (isReady.current) {
             const scrollY = sessionStorage.getItem(location.pathname);
             window.scrollTo(0, +(scrollY ?? 0));
             isReady.current = false;
         }
-        if (isLoading) {
-            isReady.current = true;
-        }
     };
 };
-
-export default useScrollRestoration;

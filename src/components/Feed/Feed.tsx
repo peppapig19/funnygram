@@ -38,7 +38,7 @@ const Feed: React.FC<FeedProps> = (props) => {
     }, [categorySlug, data, favs]);
 
     return (
-        <PostList posts={posts} isLoading={isLoading} togglePostFav={togglePostFav} />
+        <PostList posts={posts} togglePostFav={togglePostFav} />
     );
 }
 

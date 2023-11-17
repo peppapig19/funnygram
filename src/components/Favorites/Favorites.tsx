@@ -28,7 +28,7 @@ const Favorites: React.FC<FavoritesProps> = (props) => {
     }, [data.posts, favs]);
 
     return (
-        <PostList posts={posts} isLoading={isLoading} togglePostFav={togglePostFav} />
+        <PostList posts={posts} togglePostFav={togglePostFav} />
     );
 }
 

@@ -1,55 +1,72 @@
-import React, { useState, useEffect } from 'react';
-import { Routes, Route, Navigate, NavLink } from 'react-router-dom';
+import React, {
+    useState,
+    useEffect
+} from 'react';
+import {
+    Routes,
+    Route,
+    Navigate,
+    NavLink
+} from 'react-router-dom';
+
 import Loader from '../Loader/Loader';
 import Feed from '../Feed/Feed';
 import Favorites from '../Favorites/Favorites';
 import Data from '../../context/Data';
+import { Category } from '../../context/Data';
+
 import './Tabs.scss';
+import { TabsContent } from '../TabsContent/TabsContent';
+
+const data = new Data();
 
 const Tabs: React.FC = () => {
-    const [data, setData] = useState<Data>(Object);
-    const [isLoading, setIsLoading] = useState<boolean>(true);
+    const [categories, setCategories] = useState<Category[]>([
+        {
+            id: 0,
+            slug: 'allJokes',
+            name: `Все анекдоты`
+        },
+        {
+            id: 999,
+            slug: 'favorsJokes',
+            name: `Избранное`
+        }
+    ]);
 
     useEffect(() => {
-        setTimeout(() => {
-            setData(new Data());
-            setIsLoading(false);
-        }, 1000);
+        data.loadingCategories().then(res => {
+            setCategories(prevState => [prevState[0], ...res, prevState[prevState.length - 1]]);
+        });
     }, []);
 
     return (
-        <>
-            {isLoading ? (
-                <Loader isAbsoluteCenter={true} />
-            ) : (
-                <>
-                    <ul className='tabs'>
-                        <li key='all'>
-                            <NavLink to='/feed' className='tab' end>
-                                <div>Все анекдоты</div>
-                            </NavLink>
-                        </li>
-                        {data.categories.map((category, index) => (
-                            <li key={index}>
-                                <NavLink to={'/feed/' + category.slug} className='tab'>
-                                    <div>{category.name}</div>
+        <div className='tabs-wrapper'>
+            <ul className='tabs'>
+                {
+                    categories.map(c => {
+                        const toLink = `/feed/${c.slug}`;
+                        return (
+                            <li key={c.id + '_' + c.slug}>
+                                <NavLink to={toLink} className={`tab`}>
+                                    <div>
+                                        {c.id == 999 && <i className='fa fa-heart' />}
+                                        {c.name}
+                                    </div>
                                 </NavLink>
                             </li>
-                        ))}
-                        <li key='favorites'>
-                            <NavLink to='/favorites' className='tab'>
-                                <div><i className='fa fa-heart' /> Избранное</div>
-                            </NavLink>
-                        </li>
-                    </ul>
-                    <Routes>
-                        <Route path='/' element={<Navigate to='/feed' />} />
-                        <Route path='/feed/:categorySlug?' element={<Feed data={data} />} />
-                        <Route path='/favorites' element={<Favorites data={data} />} />
-                    </Routes>
-                </>
-            )}
-        </>
+                        );
+                    })
+                }
+            </ul>
+            <div className='tabs-content'>
+                <Routes>
+                    <Route path="/" element={<Navigate to="/feed/allJokes" />} />
+
+                    <Route path='/feed/:categorySlug?' element={<TabsContent />} />
+                </Routes>
+            </div>
+        </div>
     );
 };
 

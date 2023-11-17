@@ -2,11 +2,9 @@
     "name": "funnygram",
     "version": "1.0.0",
     "description": "Instagram for anecdotes",
-    "main": "./src/index.tsx",
     "scripts": {
         "start": "webpack-dev-server",
-        "build": "webpack",
-        "test": "test"
+        "build": "webpack"
     },
     "author": "Lisa",
     "license": "ISC",

@@ -1,11 +1,9 @@
 import {
     useState,
-    useEffect,
-    useCallback
+    useEffect
 } from 'react';
 
 import { PostType } from '../components/Post/Post';
-import { Post } from '../context/Data';
 
 const useFavorites = () => {
     const [favs, setFavs] = useState<PostType[]>([]);

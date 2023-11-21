@@ -1,8 +1,10 @@
-@mixin absolute-center {
-    position: absolute;
-    margin: auto;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
+@use '../../assets/styles/variables' as *;
+
+@mixin tab-content {
+    margin: $content-margin auto;
+    width: 50%;
+
+    @media (max-width: $layout-breakpoint-large) {
+        width: auto;
+    }
 }

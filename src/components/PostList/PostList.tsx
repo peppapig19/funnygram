@@ -1,29 +1,28 @@
-import React, { useEffect } from 'react';
-import Loader from '../Loader/Loader';
+import React, { RefObject } from 'react';
+
 import Post, { PostType } from '../Post/Post';
-import { useScrollRestoration } from '../../hooks/useScrollRestoration';
+
 import './PostList.scss';
+import useScrollRestoration from '../../hooks/useScrollRestoration';
 
 interface PostListProps {
     posts: PostType[];
+    scrollRef: RefObject<HTMLDivElement>;
     togglePostFav: (_post: PostType) => void;
 }
 
-const PostList: React.FC<PostListProps> = (props) => {
-    const { posts, togglePostFav } = props;
-    const reScroll = useScrollRestoration();
-
-    useEffect(() => {
-        reScroll();
-    }, [reScroll]);
+const PostList = (props: PostListProps) => {
+    const { posts, scrollRef, togglePostFav } = props;
+    const saveScroll = useScrollRestoration();
 
     return (
         <div className='post-list'>
-            {posts.map((post, index) => (
-                <Post key={index} post={post} togglePostFav={togglePostFav} />
+            {posts.map(post => (
+                <Post key={'post_' + post.id} post={post}
+                    scrollRef={scrollRef} onVisibilityChange={saveScroll}
+                    togglePostFav={togglePostFav} />
             ))}
         </div>
-
     );
 }
 

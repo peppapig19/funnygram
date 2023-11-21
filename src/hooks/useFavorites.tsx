@@ -1,34 +1,41 @@
-import { useState, useEffect } from 'react';
+import {
+    useState,
+    useEffect,
+    useCallback
+} from 'react';
+
 import { PostType } from '../components/Post/Post';
+import { Post } from '../context/Data';
 
 const useFavorites = () => {
-    const [favs, setFavs] = useState<number[]>([]);
+    const [favs, setFavs] = useState<PostType[]>([]);
 
-    useEffect(()=>{
+    useEffect(() => {
         const favs = localStorage.getItem('favs');
         if (favs) {
-            setFavs(JSON.parse(favs))
+            setFavs(JSON.parse(favs));
         }
-    }, [])
+    }, []);
 
-    const saveFavs = (idFavs: number[]) => {
+    const saveFavs = (favs: PostType[]) => {
         localStorage.setItem('favs', JSON.stringify(favs));
-    }
+    };
 
     useEffect(() => {
         saveFavs(favs);
     }, [favs]);
 
-    const togglePostFav = (post: PostType) => {
-        let newFavs = null;
-        
-        if (favs.find(fav => fav === post.id)) {
-            newFavs = favs.filter(fav => fav !== post.id);
+    const getUpdatedFavs = (post: PostType) => {
+        if (post.isFavorite) {
+            return [...favs, post];
         } else {
-            newFavs = [...favs, post.id];
+            return favs.filter(fav => fav.id !== post.id);
         }
-        
-        setFavs(newFavs);
+    };
+
+    const togglePostFav = (post: PostType) => {
+        post.isFavorite = !post.isFavorite;
+        setFavs(getUpdatedFavs(post));
     };
 
     return { favs, togglePostFav } as const;

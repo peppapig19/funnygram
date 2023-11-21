@@ -1,4 +1,3 @@
-import { resolve } from 'path';
 import db from './db.json';
 
 export interface Post {
@@ -14,9 +13,7 @@ export interface Category {
     name: string;
 }
 
-
-
-class Data {
+export default class Data {
     posts: Post[];
     categories: Category[];
 
@@ -38,8 +35,8 @@ class Data {
     }
 
     getPostsByCategorySlug = (categorySlug: string) => {
-        const category = this.getCategoryBySlug(categorySlug) ?? this.categories[0];
-        return this.posts.filter(post => post.categoryId === category.id);
+        const category = this.getCategoryBySlug(categorySlug);
+        return this.posts.filter(post => post.categoryId === category?.id);
     }
 
     addPost = (newPost: Post) => {
@@ -59,21 +56,20 @@ class Data {
         this.posts = this.posts.filter(post => post.id !== postToDelete.id);
     }
 
-    loadingCategories = async () : Promise<Category[]> => {
+    loadCategoriesAsync = async (): Promise<Category[]> => {
         return new Promise((resolve) => {
-            setTimeout(()=>{
-                return resolve(this.categories)
-            }, 1000)
-        })
+            setTimeout(() => {
+                return resolve(this.categories);
+            }, 1000);
+        });
     }
 
-    loadingPosts = async (categorySlug: string) : Promise<Post[]> => {
+    loadPostsAsync = async (categorySlug?: string): Promise<Post[]> => {
         return new Promise((resolve) => {
-            setTimeout(()=>{
-                return resolve(this.getPostsByCategorySlug(categorySlug))
-            }, 1000)
-        })
+            setTimeout(() => {
+                const posts = categorySlug ? this.getPostsByCategorySlug(categorySlug) : this.posts;
+                return resolve(posts);
+            }, 1000);
+        });
     }
 }
-
-export default Data;

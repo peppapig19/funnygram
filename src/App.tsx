@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Tabs from './components/Tabs/Tabs';
 
-const App: React.FC = () => {
+const App = () => {
     return (
         <>
             <h1 className='header'>Анекдоты</h1>
-            <Tabs/>
+            <Tabs />
         </>
     );
 };

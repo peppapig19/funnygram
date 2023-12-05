@@ -1,8 +1,12 @@
-@use '../../assets/styles/variables' as *;
-@use '../../assets/styles/mixins' as *;
+@use '../../../assets/styles/variables' as *;
 
 .settings {
-    @include tab-content;
+    margin: $content-margin auto;
+    width: 50%;
+
+    @media (max-width: $layout-breakpoint-large) {
+        width: auto;
+    }
 
     form {
         display: flex;

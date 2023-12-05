@@ -1,9 +1,12 @@
 import React, { RefObject } from 'react';
 
-import Post, { PostType } from '../Post/Post';
+import Post from '../Post/Post';
+
+import { PostType } from '../Post/PostData';
+
+import useScrollRestoration from '../../../hooks/useScrollRestoration';
 
 import './PostList.scss';
-import useScrollRestoration from '../../hooks/useScrollRestoration';
 
 interface PostListProps {
     posts: PostType[];
@@ -13,6 +16,7 @@ interface PostListProps {
 
 const PostList = (props: PostListProps) => {
     const { posts, scrollRef, togglePostFav } = props;
+
     const saveScroll = useScrollRestoration();
 
     return (

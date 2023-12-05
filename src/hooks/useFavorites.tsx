@@ -1,42 +1,52 @@
 import {
-    useState,
-    useEffect
+    useRef,
+    useEffect,
+    useCallback
 } from 'react';
 
-import { PostType } from '../components/Post/Post';
+import { PostType } from '../components/shared/Post/PostData';
+import { Category } from '../context/Data';
 
 const useFavorites = () => {
-    const [favs, setFavs] = useState<PostType[]>([]);
+    const favs = useRef<PostType[]>([]);
 
     useEffect(() => {
-        const favs = localStorage.getItem('favs');
-        if (favs) {
-            setFavs(JSON.parse(favs));
+        const localFavs = localStorage.getItem('favs');
+        if (localFavs) {
+            favs.current = JSON.parse(localFavs);
         }
     }, []);
 
-    const saveFavs = (favs: PostType[]) => {
-        localStorage.setItem('favs', JSON.stringify(favs));
-    };
-
-    useEffect(() => {
-        saveFavs(favs);
-    }, [favs]);
-
     const getUpdatedFavs = (post: PostType) => {
         if (post.isFavorite) {
-            return [...favs, post];
+            return [
+                ...favs.current,
+                post
+            ];
         } else {
-            return favs.filter(fav => fav.id !== post.id);
+            return favs.current.filter(fav => fav.id !== post.id);
         }
     };
 
-    const togglePostFav = (post: PostType) => {
-        post.isFavorite = !post.isFavorite;
-        setFavs(getUpdatedFavs(post));
+    const saveFavs = () => {
+        localStorage.setItem('favs', JSON.stringify(favs.current));
     };
 
-    return { favs, togglePostFav } as const;
+    const togglePostFav = useCallback((post: PostType) => {
+        post.isFavorite = !post.isFavorite;
+        favs.current = getUpdatedFavs(post);
+        saveFavs();
+    }, []);
+
+    const getFavsByCategory = useCallback((category?: Category) => {
+        if (category) {
+            return favs.current.filter(fav => fav.categoryId === category.id);
+        } else {
+            return favs.current;
+        }
+    }, []);
+
+    return { getFavs: getFavsByCategory, togglePostFav } as const;
 };
 
 export default useFavorites;

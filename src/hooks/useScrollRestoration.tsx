@@ -1,11 +1,10 @@
 import {
-    useEffect,
-    useRef
+    useEffect
 } from 'react';
 import { useLocation } from 'react-router-dom';
 
 const useScrollRestoration = () => {
-    const visibleIds = useRef<string[]>([]);
+    let visibleIds: string[] = [];
     const location = useLocation();
 
     const rescroll = (pathname: string) => {
@@ -17,21 +16,20 @@ const useScrollRestoration = () => {
     };
 
     useEffect(() => {
-        visibleIds.current = [];
         rescroll(location.pathname);
     }, [location.pathname]);
 
     const saveScroll = (elementId: string, isVisible: boolean, isTop: boolean) => {
         if (isVisible) {
             if (isTop) {
-                visibleIds.current.unshift(elementId);
+                visibleIds.unshift(elementId);
             } else {
-                visibleIds.current.push(elementId);
+                visibleIds.push(elementId);
             }
         } else {
-            visibleIds.current = visibleIds.current.filter(id => id !== elementId);
+            visibleIds = visibleIds.filter(id => id !== elementId);
         }
-        sessionStorage.setItem(location.pathname, visibleIds.current[0]);
+        sessionStorage.setItem(location.pathname, visibleIds[0]);
     };
 
     return saveScroll;

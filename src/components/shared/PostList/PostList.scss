@@ -1,0 +1,6 @@
+@use '../../../assets/styles/variables' as *;
+
+.post {
+    margin-top: $content-margin;
+    scroll-margin-top: $content-margin;
+}

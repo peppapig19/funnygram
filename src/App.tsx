@@ -1,10 +1,12 @@
 import React from 'react';
-import Tabs from './components/Tabs/Tabs';
+
+import Header from './components/shared/Header/Header';
+import Tabs from './components/pages/Tabs/Tabs';
 
 const App = () => {
     return (
         <>
-            <h1 className='header'>Анекдоты</h1>
+            <Header />
             <Tabs />
         </>
     );

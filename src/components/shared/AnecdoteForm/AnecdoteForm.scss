@@ -1,0 +1,43 @@
+@use '../../../assets/styles/variables' as *;
+
+.anecdote-form-header {
+    margin-top: 0;
+}
+
+.anecdote-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    &>* {
+        font-size: 16px;
+        padding: 10px;
+    }
+
+    input,
+    textarea,
+    select {
+        border: none;
+        border-radius: 5px;
+        box-sizing: border-box;
+        width: 100%;
+    }
+
+    select,
+    button {
+        cursor: pointer;
+    }
+
+    button {
+        align-self: flex-end;
+        font-weight: bold;
+        background-color: $accent-color;
+        border: none;
+        border-radius: $button-radius;
+        padding: 10px 20px;
+
+        &:hover {
+            background-color: darkorange;
+        }
+    }
+}

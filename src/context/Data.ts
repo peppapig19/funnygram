@@ -64,10 +64,13 @@ export default class Data {
         });
     }
 
-    loadPostsAsync = async (categorySlug?: string): Promise<Post[]> => {
+    loadPostsAsync = async (categorySlug?: string, offset?: number, count?: number): Promise<Post[]> => {
         return new Promise((resolve) => {
             setTimeout(() => {
-                const posts = categorySlug ? this.getPostsByCategorySlug(categorySlug) : this.posts;
+                let posts = categorySlug ? this.getPostsByCategorySlug(categorySlug) : this.posts;
+                if (offset !== undefined && count) {
+                    posts = posts.slice(offset, offset + count);
+                }
                 return resolve(posts);
             }, 1000);
         });

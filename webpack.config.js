@@ -3,30 +3,29 @@ const path = require('path');
 
 module.exports = {
     mode: 'development',
-    entry: './src/index.tsx', // точка входа приложения   
-    output: { // единственный файл, который будет использоваться браузером, со сборкой всех модулей приложения
+    entry: './src/index.tsx',
+    output: {
         path: path.resolve(__dirname, 'public'),
-        filename: 'bundle.js'
+        filename: 'bundle.js' //filename: '[name].[contenthash].bundle.js'
     },
     target: 'web',
     devServer: {
-        port: '9500', // порт сервера разработки
-        static: ['./public'], // какие статические файлы вебпак будет обслуживать
+        port: '9500',
+        static: ['./public'],
         open: true,
-        liveReload: true, // обнаружение изменений кода
-        hot: true // обновлять модули без перезагрузки страницы
+        liveReload: true,
+        hot: true
     },
+    devtool: 'source-map',
     resolve: {
-        // если у нескольких файлов одинаковое имя, но разные расширения, вебпак использует первое расширение в списке
-        // это позволяет не указывать расширение при импорте
-        extensions: ['.ts', '.tsx', '.js', '.jsx', '.json', '.css']
+        extensions: ['.ts', '.tsx', '.js', '.jsx', '.json', '.scss']
     },
     module: {
         rules: [
             {
-                test: /\.tsx?$/, // искомые расширения
+                test: /\.tsx?$/,
                 exclude: /node_modules/,
-                use: 'ts-loader' // транспайлер
+                use: 'ts-loader'
             },
             {
                 test: /\.jsx?$/,
@@ -35,7 +34,7 @@ module.exports = {
             },
             {
                 test: /\.s(a|c)ss$/,
-                use: ['style-loader', 'css-loader', 'sass-loader'] // загрузка стилей, затем внедрение их в DOM
+                use: ['style-loader', 'css-loader', 'sass-loader']
             },
         ]
     }

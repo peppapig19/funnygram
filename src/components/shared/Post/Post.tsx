@@ -1,18 +1,13 @@
 import React, {
+    useState,
     useRef,
     useEffect,
     RefObject
 } from 'react';
 
-import './Post.scss';
+import { PostType } from './PostData';
 
-export interface PostType {
-    id: number;
-    categoryId: number;
-    title: string;
-    body: string;
-    isFavorite: boolean;
-}
+import './Post.scss';
 
 interface PostProps {
     post: PostType;
@@ -23,9 +18,12 @@ interface PostProps {
 
 const Post = (props: PostProps) => {
     const { post, scrollRef, onVisibilityChange, togglePostFav } = props;
+
+    const [isFavorite, setIsFavorite] = useState<boolean>(post.isFavorite);
+
     const ref = useRef(null);
+
     const elementId = 'post-' + post.id;
-    const starClass = post.isFavorite ? 'star-active fa-solid fa-star' : 'star fa-regular fa-star';
 
     useEffect(() => {
         const observer = new IntersectionObserver(
@@ -46,6 +44,7 @@ const Post = (props: PostProps) => {
 
     const handleStarClick = () => {
         togglePostFav(post);
+        setIsFavorite(!isFavorite);
     };
 
     return (
@@ -54,7 +53,9 @@ const Post = (props: PostProps) => {
                 <h2>{post.title}</h2>
                 <p>{post.body}</p>
             </div>
-            <div className='post-fav' onClick={handleStarClick}><i className={starClass} /></div>
+            <div className='post-fav' onClick={handleStarClick}>
+                <i className={isFavorite ? 'star-active fa-solid fa-star' : 'star fa-regular fa-star'} />
+            </div>
         </div>
     );
 };

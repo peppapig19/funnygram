@@ -1,0 +1,15 @@
+@use '../../../assets/styles/variables' as *;
+
+.tab {
+    cursor: pointer;
+    text-align: center;
+    font-weight: bold;
+    color: $text-color;
+    padding: 10px 20px;
+    border-bottom: 5px solid $tabs-background-color;
+
+    &.active,
+    &:hover {
+        border-bottom: 5px solid $accent-color;
+    }
+}

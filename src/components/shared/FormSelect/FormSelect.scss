@@ -1,0 +1,7 @@
+@use '../../../assets/styles/variables' as *;
+@use '../../../assets/styles/mixins' as *;
+
+.form-select {
+    @include form-input;
+    cursor: pointer;
+}

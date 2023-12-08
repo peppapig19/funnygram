@@ -1,0 +1,30 @@
+@use './variables' as *;
+
+@mixin content-based {
+    display: grid;
+    margin: auto;
+    width: 50%;
+    gap: $content-margin;
+    margin-bottom: $content-margin;
+}
+
+@mixin form-input {
+    border: none;
+    border-radius: 5px;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+@mixin form-button {
+    cursor: pointer;
+    align-self: flex-end;
+    font-weight: bold;
+    background-color: $accent-color;
+    border: none;
+    border-radius: $button-radius;
+    padding: 10px 20px;
+
+    &:hover {
+        background-color: $accent-color-dark;
+    }
+}

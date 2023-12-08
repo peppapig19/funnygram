@@ -1,48 +1,19 @@
 @use '../../../assets/styles/variables' as *;
+@use '../../../assets/styles/mixins' as *;
 
 .sidebar {
-    position: fixed;
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow-y: auto;
     box-sizing: border-box;
     background-color: $tabs-background-color;
     width: $sidebar-width;
     height: 100%;
     padding: 10px;
-}
 
-.sidebar-close {
-    cursor: pointer;
-    float: right;
-}
-
-.sidebar-header {
-    margin-top: 0;
-    margin-left: 10px;
-}
-
-.sidebar-options {
-    display: grid;
-    list-style: none;
-    gap: 5px;
-    padding: 0;
-}
-
-.sidebar-option {
-    text-decoration: none;
-
-    div {
-        text-align: center;
-        font-weight: bold;
-        color: $text-color;
-        border: 2px solid $accent-color;
-        border-radius: $button-radius;
-        padding: 10px 20px;
-    }
-
-    &.active,
-    &:hover {
-        div {
-            color: black;
-            background-color: $accent-color;
-        }
+    .close-sidebar {
+        cursor: pointer;
+        float: right;
     }
 }

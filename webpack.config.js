@@ -3,20 +3,21 @@ const path = require('path');
 
 module.exports = {
     mode: 'development',
-    entry: './src/index.tsx',
+    entry: {
+        main: './src/index.tsx'
+    },
     output: {
         path: path.resolve(__dirname, 'public'),
-        filename: 'bundle.js' //filename: '[name].[contenthash].bundle.js'
+        filename: '[name].bundle.js'
     },
     target: 'web',
     devServer: {
-        port: '9500',
         static: ['./public'],
         open: true,
         liveReload: true,
         hot: true
     },
-    devtool: 'source-map',
+    devtool: 'inline-source-map',
     resolve: {
         extensions: ['.ts', '.tsx', '.js', '.jsx', '.json', '.scss']
     },

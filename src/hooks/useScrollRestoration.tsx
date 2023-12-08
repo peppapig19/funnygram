@@ -1,38 +1,23 @@
 import {
+    useRef,
     useEffect
 } from 'react';
-import { useLocation } from 'react-router-dom';
+
+import { useNavContext } from '../context/NavContext';
+import ScrollRestoration from '../context/ScrollRestoration';
 
 const useScrollRestoration = () => {
-    let visibleIds: string[] = [];
-    const location = useLocation();
+    const { selectedTab, selectedGenreId } = useNavContext();
 
-    const rescroll = (pathname: string) => {
-        const elementId = sessionStorage.getItem(pathname);
-        if (elementId) {
-            const element = document.getElementById(elementId);
-            element?.scrollIntoView({ behavior: 'smooth' });
-        }
-    };
+    const scroller = useRef<ScrollRestoration>();
 
     useEffect(() => {
-        rescroll(location.pathname);
-    }, [location.pathname]);
+        scroller.current = new ScrollRestoration(
+            selectedTab.id,
+            selectedGenreId)
+    }, [selectedTab, selectedGenreId]);
 
-    const saveScroll = (elementId: string, isVisible: boolean, isTop: boolean) => {
-        if (isVisible) {
-            if (isTop) {
-                visibleIds.unshift(elementId);
-            } else {
-                visibleIds.push(elementId);
-            }
-        } else {
-            visibleIds = visibleIds.filter(id => id !== elementId);
-        }
-        sessionStorage.setItem(location.pathname, visibleIds[0]);
-    };
-
-    return saveScroll;
+    return scroller;
 }
 
 export default useScrollRestoration;

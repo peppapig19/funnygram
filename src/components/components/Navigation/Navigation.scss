@@ -1,0 +1,14 @@
+@use '../../../assets/styles/variables' as *;
+
+.navigation-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    height: 100%;
+
+    #open-sidebar {
+        cursor: pointer;
+        margin: auto 20px;
+    }
+}

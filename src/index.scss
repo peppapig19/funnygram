@@ -1,4 +1,4 @@
-@use 'assets/styles/variables' as *;
+@use './assets/styles/variables' as *;
 
 html,
 body,
@@ -14,8 +14,4 @@ body {
     color: $text-color;
     overflow: hidden;
     margin: 0;
-
-    @media (max-width: $layout-breakpoint-large) {
-        overflow: visible;
-    }
 }

@@ -1,0 +1,15 @@
+@use '../../../assets/styles/variables' as *;
+
+.tabs {
+    display: flex;
+    list-style: none;
+    background-color: $tabs-background-color;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-shift {
+    .tabs-panel {
+        padding-left: $sidebar-width;
+    }
+}

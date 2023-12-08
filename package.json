@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "description": "Instagram for anecdotes",
     "scripts": {
-        "start": "webpack-dev-server",
+        "start": "webpack-dev-server --port 9500",
         "build": "webpack"
     },
     "author": "Lisa",

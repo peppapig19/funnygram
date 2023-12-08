@@ -1,0 +1,30 @@
+@use '../../../assets/styles/variables' as *;
+@use '../../../assets/styles/mixins' as *;
+
+.anecdote-form-header {
+    margin-top: 0;
+}
+
+.anecdote-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    &>* {
+        font-size: 16px;
+        padding: 10px;
+    }
+
+    input,
+    textarea {
+        @include form-input;
+    }
+
+    button {
+        @include form-button;
+    }
+
+    .message {
+        color: $error-color;
+    }
+}

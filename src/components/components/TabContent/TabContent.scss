@@ -1,0 +1,12 @@
+@use '../../../assets/styles/variables' as *;
+
+.tab-content {
+    overflow-y: scroll;
+    height: 100%;
+}
+
+.sidebar-shift {
+    .tab-content>div {
+        padding-left: $sidebar-width;
+    }
+}

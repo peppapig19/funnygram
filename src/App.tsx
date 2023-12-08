@@ -1,14 +1,16 @@
 import React from 'react';
 
-import Header from './components/shared/Header/Header';
-import Tabs from './components/pages/Tabs/Tabs';
+import Header from './components/widgets/Header/Header';
+import Navigation from './components/components/Navigation/Navigation';
+
+import { NavProvider } from './context/NavContext';
 
 const App = () => {
     return (
-        <>
+        <NavProvider>
             <Header />
-            <Tabs />
-        </>
+            <Navigation />
+        </NavProvider>
     );
 };
 

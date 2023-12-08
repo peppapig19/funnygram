@@ -1,0 +1,13 @@
+@use '../../../assets/styles/variables' as *;
+
+.menu-header {
+    margin-top: 0;
+    margin-left: 10px;
+}
+
+.menu-options {
+    display: grid;
+    list-style: none;
+    gap: 5px;
+    padding: 0;
+}

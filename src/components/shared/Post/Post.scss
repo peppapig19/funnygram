@@ -8,22 +8,22 @@
     min-height: 200px;
     padding: 10px;
 
+    &:hover {
+        background-color: $post-lighter-color;
+    }
+
     h2 {
         margin-top: 0;
     }
 
-    &:hover {
-        background-color: $post-lighter-color;
-    }
-}
+    .post-fav {
+        cursor: pointer;
+        position: absolute;
+        right: 10px;
+        bottom: 10px;
 
-.post-fav {
-    cursor: pointer;
-    position: absolute;
-    right: 10px;
-    bottom: 10px;
-
-    .star-active {
-        color: $post-star-color;
+        .star-active {
+            color: $post-star-color;
+        }
     }
 }

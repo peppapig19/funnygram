@@ -1,0 +1,24 @@
+@use '../../../assets/styles/variables' as *;
+
+.feed-buttons {
+    display: flex;
+    justify-content: end;
+    gap: 10px;
+
+    button {
+        cursor: pointer;
+        text-align: center;
+        font-size: 16px;
+        font-weight: bold;
+        color: $text-color;
+        background-color: $background-color;
+        border: 2px solid $accent-color;
+        border-radius: $button-radius;
+        padding: 10px 20px;
+
+        &:hover {
+            color: black;
+            background-color: $accent-color;
+        }
+    }
+}

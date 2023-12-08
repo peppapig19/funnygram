@@ -1,0 +1,17 @@
+@use '../../../assets/styles/variables' as *;
+
+.genre-option {
+    cursor: pointer;
+    text-align: center;
+    font-weight: bold;
+    color: $text-color;
+    border: 2px solid $accent-color;
+    border-radius: $button-radius;
+    padding: 10px 20px;
+
+    &.active,
+    &:hover {
+        color: black;
+        background-color: $accent-color;
+    }
+}

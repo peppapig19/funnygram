@@ -3,9 +3,26 @@
 .tabs {
     display: flex;
     list-style: none;
+    align-items: end;
     background-color: $tabs-background-color;
     padding: 0;
     margin: 0;
+
+    #open-sidebar {
+        border: none;
+
+        .icon {
+            width: 30px;
+            height: 30px;
+        }
+
+        &.active,
+        &:hover {
+            .icon {
+                fill: $accent-color;
+            }
+        }
+    }
 }
 
 .sidebar-shift {

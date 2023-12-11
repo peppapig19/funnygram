@@ -1,7 +1,6 @@
 import React, {
     useState,
-    useMemo,
-    useEffect
+    useMemo
 } from 'react';
 
 import Sidebar from '../../widgets/Sidebar/Sidebar';
@@ -15,7 +14,6 @@ import './Navigation.scss';
 
 const Navigation = () => {
     const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
-    const [tabsPanelData, setTabsPanelData] = useState<TabType[]>(tabs);
 
     const toggleSidebar = () => {
         setIsSidebarOpen(prev => !prev);
@@ -26,23 +24,23 @@ const Navigation = () => {
             id: 'open-sidebar',
             name: '',
             action: toggleSidebar,
-            icon: 'fa fa-bars'
+            iconName: 'hamburger'
         };
         return openSidebar;
     }, []);
 
-    useEffect(() => {
+    const getTabsPanel = () => {
         if (isSidebarOpen) {
-            setTabsPanelData(tabs);
+            return tabs;
         } else {
-            setTabsPanelData(prev => [getSidebarTab, ...prev])
+            return [getSidebarTab, ...tabs];
         }
-    }, [isSidebarOpen, getSidebarTab]);
+    };
 
     return (
         <div className={'navigation-container ' + (isSidebarOpen ? 'sidebar-shift' : '')}>
             <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
-            <TabsPanel tabs={tabsPanelData} />
+            <TabsPanel tabs={getTabsPanel()} />
             <TabContent />
         </div>
     );

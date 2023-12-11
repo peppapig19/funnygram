@@ -4,6 +4,8 @@ import React, {
     useEffect
 } from 'react';
 
+import Icon from '../Icon/Icon';
+
 import { PostType } from './PostType';
 import ScrollRestoration from '../../../context/ScrollRestoration';
 
@@ -51,7 +53,7 @@ const Post = (props: PostProps) => {
 
     return (
         <div className='post-container'>
-            <p className='post-hint'>{post.hint}</p>
+            {post.hint && <p className='post-hint'>{post.hint}</p>}
             <div className='post' id={index.toString()} ref={ref}>
                 <div className='post-content'>
                     <h2>{post.title}</h2>
@@ -59,7 +61,11 @@ const Post = (props: PostProps) => {
                 </div>
                 {togglePostFav &&
                     <div className='post-fav' onClick={handleStarClick}>
-                        <i className={isFavorite ? 'star-active fa-solid fa-star' : 'star fa-regular fa-star'} />
+                        {isFavorite ? (
+                            <Icon name='starFilled' className='active' />
+                        ) : (
+                            <Icon name='star' />
+                        )}
                     </div>
                 }
             </div>

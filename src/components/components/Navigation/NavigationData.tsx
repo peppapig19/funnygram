@@ -16,12 +16,12 @@ export const tabs: TabType[] = [
         id: 'favorites',
         name: 'Избранное',
         content: <Favorites />,
-        icon: 'fa fa-heart'
+        iconName: 'heart'
     },
     {
         id: 'history',
         name: 'История',
         content: <History />,
-        icon: 'fa fa-clock-rotate-left'
+        iconName: 'clock'
     }
 ];

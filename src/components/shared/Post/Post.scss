@@ -22,8 +22,13 @@
         right: 10px;
         bottom: 10px;
 
-        .star-active {
-            color: $post-star-color;
+        .icon {
+            width: 30px;
+            height: 30px;
+        }
+
+        .active {
+            fill: $post-star-color;
         }
     }
 }

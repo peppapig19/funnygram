@@ -1,0 +1,8 @@
+@use '../../../assets/styles/variables' as *;
+
+.icon {
+    display: block;
+    fill: $text-color;
+    width: 20px;
+    height: 20px;
+}

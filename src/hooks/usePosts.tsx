@@ -67,13 +67,13 @@ const usePosts = () => {
     useEffect(() => {
         isCacheOnly.current = !navigator.onLine;
         offset.current = 0;
-        const count = scroller.current?.getScrollIndex();
-        if (count && +count !== 0) {
-            let pages = +count / PAGE_ITEMS_COUNT;
-            if (+count % PAGE_ITEMS_COUNT !== 0) {
+        const count = Number(scroller.current?.getScrollIndex());
+        if (count !== 0) {
+            let pages = Math.round(count / PAGE_ITEMS_COUNT);
+            if (count % PAGE_ITEMS_COUNT !== 0) {
                 pages++;
             }
-            loadMore(Math.round(pages) * PAGE_ITEMS_COUNT);
+            loadMore(pages * PAGE_ITEMS_COUNT);
         } else {
             loadMore(PAGE_ITEMS_COUNT);
         }

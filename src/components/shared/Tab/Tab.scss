@@ -1,6 +1,7 @@
 @use '../../../assets/styles/variables' as *;
 
 .tab {
+    display: flex;
     cursor: pointer;
     text-align: center;
     font-weight: bold;

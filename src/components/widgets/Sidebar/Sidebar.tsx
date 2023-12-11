@@ -1,5 +1,6 @@
 import React from 'react';
 
+import Icon from '../../shared/Icon/Icon';
 import GenreMenu from '../../components/GenreMenu/GenreMenu';
 
 import './Sidebar.scss';
@@ -19,7 +20,7 @@ const Sidebar = (props: SidebarProps) => {
     return (
         <div className='sidebar'>
             <div className='close-sidebar' onClick={toggleSidebar}>
-                <i className='fa fa-xmark fa-xl'></i>
+                <Icon name='close' />
             </div>
             <div className='sidebar-content'>
                 <GenreMenu />

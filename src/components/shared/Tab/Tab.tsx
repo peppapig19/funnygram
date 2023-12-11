@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Icon from '../Icon/Icon';
+
 import { useNavContext } from '../../../context/NavContext';
 import TabType from './TabType';
 
@@ -24,7 +26,8 @@ const Tab = (props: TabProps) => {
 
     return (
         <div id={tab.id} className={'tab ' + (tab.id === selectedTab.id ? 'active' : '')} onClick={onClick}>
-            {tab.icon && <span><i className={tab.icon} /> </span>}
+            {tab.iconName && <Icon name={tab.iconName} />}
+            {tab.iconName && tab.name && <span>&nbsp;</span>}
             {tab.name}
         </div>
     );

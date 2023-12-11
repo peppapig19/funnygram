@@ -15,5 +15,10 @@
     .close-sidebar {
         cursor: pointer;
         float: right;
+
+        .icon {
+            width: 30px;
+            height: 30px;
+        }
     }
 }
